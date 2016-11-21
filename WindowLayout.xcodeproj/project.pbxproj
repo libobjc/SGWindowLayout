@@ -11,6 +11,11 @@
 		9C64AFDE1DE295CC008E0AC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFDD1DE295CC008E0AC4 /* main.m */; };
 		9C64AFE01DE295CC008E0AC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C64AFDF1DE295CC008E0AC4 /* Assets.xcassets */; };
 		9C64AFE31DE295CC008E0AC4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C64AFE11DE295CC008E0AC4 /* MainMenu.xib */; };
+		9C64AFED1DE29624008E0AC4 /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFEC1DE29624008E0AC4 /* Layout.m */; };
+		9C64AFF71DE29AB4008E0AC4 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFF21DE29AB4008E0AC4 /* PTHotKey.m */; };
+		9C64AFF81DE29AB4008E0AC4 /* PTHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFF41DE29AB4008E0AC4 /* PTHotKeyCenter.m */; };
+		9C64AFF91DE29AB4008E0AC4 /* PTKeyCombo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFF61DE29AB4008E0AC4 /* PTKeyCombo.m */; };
+		9C64AFFC1DE29AE6008E0AC4 /* HotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFFB1DE29AE6008E0AC4 /* HotKey.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +26,16 @@
 		9C64AFDF1DE295CC008E0AC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C64AFE21DE295CC008E0AC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9C64AFE41DE295CC008E0AC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C64AFEB1DE29624008E0AC4 /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
+		9C64AFEC1DE29624008E0AC4 /* Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Layout.m; sourceTree = "<group>"; };
+		9C64AFF11DE29AB4008E0AC4 /* PTHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKey.h; sourceTree = "<group>"; };
+		9C64AFF21DE29AB4008E0AC4 /* PTHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKey.m; sourceTree = "<group>"; };
+		9C64AFF31DE29AB4008E0AC4 /* PTHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKeyCenter.h; sourceTree = "<group>"; };
+		9C64AFF41DE29AB4008E0AC4 /* PTHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKeyCenter.m; sourceTree = "<group>"; };
+		9C64AFF51DE29AB4008E0AC4 /* PTKeyCombo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKeyCombo.h; sourceTree = "<group>"; };
+		9C64AFF61DE29AB4008E0AC4 /* PTKeyCombo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKeyCombo.m; sourceTree = "<group>"; };
+		9C64AFFA1DE29AE6008E0AC4 /* HotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKey.h; sourceTree = "<group>"; };
+		9C64AFFB1DE29AE6008E0AC4 /* HotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKey.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +68,8 @@
 		9C64AFD81DE295CC008E0AC4 /* WindowLayout */ = {
 			isa = PBXGroup;
 			children = (
+				9C64AFEF1DE29AB4008E0AC4 /* Libs */,
+				9C64AFEA1DE29614008E0AC4 /* Core */,
 				9C64AFD91DE295CC008E0AC4 /* AppDelegate.h */,
 				9C64AFDA1DE295CC008E0AC4 /* AppDelegate.m */,
 				9C64AFDF1DE295CC008E0AC4 /* Assets.xcassets */,
@@ -69,6 +86,38 @@
 				9C64AFDD1DE295CC008E0AC4 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9C64AFEA1DE29614008E0AC4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				9C64AFEB1DE29624008E0AC4 /* Layout.h */,
+				9C64AFEC1DE29624008E0AC4 /* Layout.m */,
+				9C64AFFA1DE29AE6008E0AC4 /* HotKey.h */,
+				9C64AFFB1DE29AE6008E0AC4 /* HotKey.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		9C64AFEF1DE29AB4008E0AC4 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				9C64AFF01DE29AB4008E0AC4 /* PTHotKey */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		9C64AFF01DE29AB4008E0AC4 /* PTHotKey */ = {
+			isa = PBXGroup;
+			children = (
+				9C64AFF11DE29AB4008E0AC4 /* PTHotKey.h */,
+				9C64AFF21DE29AB4008E0AC4 /* PTHotKey.m */,
+				9C64AFF31DE29AB4008E0AC4 /* PTHotKeyCenter.h */,
+				9C64AFF41DE29AB4008E0AC4 /* PTHotKeyCenter.m */,
+				9C64AFF51DE29AB4008E0AC4 /* PTKeyCombo.h */,
+				9C64AFF61DE29AB4008E0AC4 /* PTKeyCombo.m */,
+			);
+			path = PTHotKey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +191,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C64AFED1DE29624008E0AC4 /* Layout.m in Sources */,
+				9C64AFFC1DE29AE6008E0AC4 /* HotKey.m in Sources */,
+				9C64AFF71DE29AB4008E0AC4 /* PTHotKey.m in Sources */,
+				9C64AFF81DE29AB4008E0AC4 /* PTHotKeyCenter.m in Sources */,
 				9C64AFDE1DE295CC008E0AC4 /* main.m in Sources */,
+				9C64AFF91DE29AB4008E0AC4 /* PTKeyCombo.m in Sources */,
 				9C64AFDB1DE295CC008E0AC4 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +347,7 @@
 				9C64AFE91DE295CC008E0AC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

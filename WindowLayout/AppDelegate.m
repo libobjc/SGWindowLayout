@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "HotKey.h"
+#import "Layout.h"
 
 @interface AppDelegate ()
 
@@ -17,14 +19,13 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    `
+    [HotKey setup];
+    [Layout setup];
 }
-
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
     
 }
-
 
 @end
