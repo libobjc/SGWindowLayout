@@ -15,52 +15,25 @@
 
 + (void)setup
 {
-    PTKeyCombo* keyComboA = [PTKeyCombo keyComboWithKeyCode:0 modifiers:controlKey];
-    PTKeyCombo* keyComboS = [PTKeyCombo keyComboWithKeyCode:1 modifiers:controlKey];
-    PTKeyCombo* keyComboD = [PTKeyCombo keyComboWithKeyCode:2 modifiers:controlKey];
-    PTKeyCombo* keyComboW = [PTKeyCombo keyComboWithKeyCode:13 modifiers:controlKey];
-    PTKeyCombo* keyComboX = [PTKeyCombo keyComboWithKeyCode:7 modifiers:controlKey];
+    [self registerName:@"A" keyCode:0 modifiers:controlKey];
+    [self registerName:@"S" keyCode:1 modifiers:controlKey];
+    [self registerName:@"D" keyCode:2 modifiers:controlKey];
+    [self registerName:@"W" keyCode:13 modifiers:controlKey];
+    [self registerName:@"X" keyCode:7 modifiers:controlKey];
+}
+
++ (void)registerName:(NSString *)name keyCode:(int)keyCode modifiers:(int)modifiers
+{
+    PTKeyCombo* keyCombo = [PTKeyCombo keyComboWithKeyCode:keyCode modifiers:modifiers];
     
-    PTHotKey* ptHotKeyA = [[PTHotKey alloc] init];
-    [ptHotKeyA setName:@"A"];
-    [ptHotKeyA setKeyCombo:keyComboA];
-    [ptHotKeyA setIsExclusive:YES];
-    [ptHotKeyA setTarget:self];
-    [ptHotKeyA setAction:@selector(globalHotKeyDidPress:)];
+    PTHotKey* ptHotKey = [[PTHotKey alloc] init];
+    [ptHotKey setName:name];
+    [ptHotKey setKeyCombo:keyCombo];
+    [ptHotKey setIsExclusive:YES];
+    [ptHotKey setTarget:self];
+    [ptHotKey setAction:@selector(globalHotKeyDidPress:)];
     
-    PTHotKey* ptHotKeyS = [[PTHotKey alloc] init];
-    [ptHotKeyS setName:@"S"];
-    [ptHotKeyS setKeyCombo:keyComboS];
-    [ptHotKeyS setIsExclusive:YES];
-    [ptHotKeyS setTarget:self];
-    [ptHotKeyS setAction:@selector(globalHotKeyDidPress:)];
-    
-    PTHotKey* ptHotKeyD = [[PTHotKey alloc] init];
-    [ptHotKeyD setName:@"D"];
-    [ptHotKeyD setKeyCombo:keyComboD];
-    [ptHotKeyD setIsExclusive:YES];
-    [ptHotKeyD setTarget:self];
-    [ptHotKeyD setAction:@selector(globalHotKeyDidPress:)];
-    
-    PTHotKey* ptHotKeyW = [[PTHotKey alloc] init];
-    [ptHotKeyW setName:@"W"];
-    [ptHotKeyW setKeyCombo:keyComboW];
-    [ptHotKeyW setIsExclusive:YES];
-    [ptHotKeyW setTarget:self];
-    [ptHotKeyW setAction:@selector(globalHotKeyDidPress:)];
-    
-    PTHotKey* ptHotKeyX = [[PTHotKey alloc] init];
-    [ptHotKeyX setName:@"X"];
-    [ptHotKeyX setKeyCombo:keyComboX];
-    [ptHotKeyX setIsExclusive:YES];
-    [ptHotKeyX setTarget:self];
-    [ptHotKeyX setAction:@selector(globalHotKeyDidPress:)];
-    
-    [[PTHotKeyCenter sharedCenter] registerHotKey:ptHotKeyA];
-    [[PTHotKeyCenter sharedCenter] registerHotKey:ptHotKeyS];
-    [[PTHotKeyCenter sharedCenter] registerHotKey:ptHotKeyD];
-    [[PTHotKeyCenter sharedCenter] registerHotKey:ptHotKeyW];
-    [[PTHotKeyCenter sharedCenter] registerHotKey:ptHotKeyX];
+    [[PTHotKeyCenter sharedCenter] registerHotKey:ptHotKey];
 }
 
 + (void)globalHotKeyDidPress:(PTHotKey *)hotKey
