@@ -12,9 +12,8 @@
 
 @interface AppDelegate ()
 
-@property (weak) IBOutlet NSWindow *window;
-@property (weak) IBOutlet NSTextField *frameLabel;
-@property (weak) IBOutlet NSTextField *orFrameLabel;
+@property (nonatomic, strong) NSStatusItem * statusItem;
+@property (weak) IBOutlet NSMenu *statusMenu;
 
 @end
 
@@ -22,19 +21,39 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:20];
+    self.statusItem.button.target = self;
+    self.statusItem.button.action = @selector(statusItemAction:);
+    self.statusItem.button.image = [NSImage imageNamed:@"logo"];
+    self.statusItem.menu = self.statusMenu;
+    
     [HotKey setup];
     [Layout setup];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-    
+    [[NSStatusBar systemStatusBar] removeStatusItem:self.statusItem];
 }
 
-- (void)layoutFrame:(NSRect)frame or:(NSRect)orFrame
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
 {
-    self.frameLabel.stringValue = NSStringFromRect(frame);
-    self.orFrameLabel.stringValue = NSStringFromRect(orFrame);
+    return YES;
+}
+
+- (void)statusItemAction:(NSStatusItem *)statusItem
+{
+    NSLog(@"status bar did click");
+}
+
+- (void)statusItemDoubleAction:(NSStatusItem *)statusItem
+{
+    NSLog(@"double click");
+}
+
+- (IBAction)quitAction:(id)sender
+{
+    [[NSApplication sharedApplication] terminate:self];
 }
 
 @end
