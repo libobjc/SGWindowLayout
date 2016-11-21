@@ -22,9 +22,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:20];
-    self.statusItem.button.target = self;
-    self.statusItem.button.action = @selector(statusItemAction:);
-    self.statusItem.button.image = [NSImage imageNamed:@"logo"];
+    self.statusItem.image = [NSImage imageNamed:@"logo"];
     self.statusItem.menu = self.statusMenu;
     
     [HotKey setup];
@@ -39,16 +37,6 @@
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
 {
     return YES;
-}
-
-- (void)statusItemAction:(NSStatusItem *)statusItem
-{
-    NSLog(@"status bar did click");
-}
-
-- (void)statusItemDoubleAction:(NSStatusItem *)statusItem
-{
-    NSLog(@"double click");
 }
 
 - (IBAction)quitAction:(id)sender
