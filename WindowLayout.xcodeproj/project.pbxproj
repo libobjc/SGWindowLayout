@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C336D7D1DE2D4D300193A8F /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C336D7C1DE2D4D300193A8F /* Login.m */; };
 		9C64AFDB1DE295CC008E0AC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFDA1DE295CC008E0AC4 /* AppDelegate.m */; };
 		9C64AFDE1DE295CC008E0AC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFDD1DE295CC008E0AC4 /* main.m */; };
 		9C64AFE01DE295CC008E0AC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C64AFDF1DE295CC008E0AC4 /* Assets.xcassets */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C336D7B1DE2D4D300193A8F /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
+		9C336D7C1DE2D4D300193A8F /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		9C64AFD61DE295CC008E0AC4 /* WindowLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindowLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C64AFD91DE295CC008E0AC4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9C64AFDA1DE295CC008E0AC4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -95,6 +98,8 @@
 				9C64AFEC1DE29624008E0AC4 /* Layout.m */,
 				9C64AFFA1DE29AE6008E0AC4 /* HotKey.h */,
 				9C64AFFB1DE29AE6008E0AC4 /* HotKey.m */,
+				9C336D7B1DE2D4D300193A8F /* Login.h */,
+				9C336D7C1DE2D4D300193A8F /* Login.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 				9C64AFED1DE29624008E0AC4 /* Layout.m in Sources */,
 				9C64AFFC1DE29AE6008E0AC4 /* HotKey.m in Sources */,
 				9C64AFF71DE29AB4008E0AC4 /* PTHotKey.m in Sources */,
+				9C336D7D1DE2D4D300193A8F /* Login.m in Sources */,
 				9C64AFF81DE29AB4008E0AC4 /* PTHotKeyCenter.m in Sources */,
 				9C64AFDE1DE295CC008E0AC4 /* main.m in Sources */,
 				9C64AFF91DE29AB4008E0AC4 /* PTKeyCombo.m in Sources */,

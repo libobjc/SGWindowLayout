@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "HotKey.h"
 #import "Layout.h"
+#import "Login.h"
 
 @interface AppDelegate ()
 
@@ -21,9 +22,11 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:20];
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:22];
     self.statusItem.image = [NSImage imageNamed:@"logo"];
     self.statusItem.menu = self.statusMenu;
+    NSMenuItem * item = [self.statusMenu itemAtIndex:0];
+    item.state = [[Login login] state];
     
     [HotKey setup];
     [Layout setup];
@@ -42,6 +45,12 @@
 - (IBAction)quitAction:(id)sender
 {
     [[NSApplication sharedApplication] terminate:self];
+}
+
+- (IBAction)startAtLogin:(NSMenuItem *)menuItem
+{
+    menuItem.state = !menuItem.state;
+    [[Login login] startAtLogin:menuItem.state];
 }
 
 @end

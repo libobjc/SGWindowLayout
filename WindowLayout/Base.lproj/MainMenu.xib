@@ -20,6 +20,12 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="StatusMenu" id="eax-Gx-aFs">
             <items>
+                <menuItem title="Start At Login" state="on" id="bUs-i0-XVS">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="startAtLogin:" target="Voe-Tx-rLC" id="83O-76-EGH"/>
+                    </connections>
+                </menuItem>
                 <menuItem title=" Quit" id="lgc-p3-HIC">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
