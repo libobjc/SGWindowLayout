@@ -53,13 +53,6 @@
 
 - (BOOL)state
 {
-    BOOL flag = [[NSUserDefaults standardUserDefaults] boolForKey:@"StartAtLoginFlag"];
-    if (!flag) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"StartAtLoginFlag"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self startAtLogin:YES];
-    }
-    
     UInt32 seed = 0;
     CFArrayRef loginItemsSnapshot = LSSharedFileListCopySnapshot(_sharedFileList, &seed);
     if (loginItemsSnapshot == NULL) return NO;
