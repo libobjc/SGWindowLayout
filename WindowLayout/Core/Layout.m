@@ -12,11 +12,16 @@
 
 + (void)setup
 {
+    if (!AXIsProcessTrusted()) {
+        [self processTrusted];
+    }
+}
+
++ (void)processTrusted
+{
     CFMutableDictionaryRef options = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
     CFDictionaryAddValue(options, kAXTrustedCheckOptionPrompt, kCFBooleanTrue);
-    
     AXIsProcessTrustedWithOptions(options);
-    
     CFRelease(options);
 }
 
@@ -28,6 +33,11 @@
 
 + (void)layoutWindowWithAttribute:(LayoutAttribute)attribute frame:(NSRect)frame
 {
+    if (!AXIsProcessTrusted()) {
+        [self processTrusted];
+        return;
+    }
+    
     CGPoint position = [self rect:frame attribute:attribute].origin;
     CGSize size = [self rect:frame attribute:attribute].size;
     
