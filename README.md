@@ -7,6 +7,10 @@
 - control + D : Right
 - control + W : Top
 - control + X : Bottom
+- control + Q : LeftTop
+- control + E : RigthTop
+- control + Z : LeftBottom
+- control + C : RightBottom
 ```
 
 ## Warning
