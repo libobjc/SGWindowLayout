@@ -14,6 +14,10 @@ typedef NS_ENUM(NSUInteger, LayoutAttribute) {
     LayoutAttributeRight,
     LayoutAttributeTop,
     LayoutAttributeBottom,
+    LayoutAttributeLeftTop,
+    LayoutAttributeRightTop,
+    LayoutAttributeLeftBottom,
+    LayoutAttributeRightBottom,
 };
 
 @interface Layout : NSObject

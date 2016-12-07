@@ -105,6 +105,30 @@
             frame.size = NSMakeSize(rect.size.width, rect.size.height/2);
         }
             break;
+        case LayoutAttributeLeftTop:
+        {
+            frame.origin = rect.origin;
+            frame.size = NSMakeSize(rect.size.width/2, rect.size.height/2);
+        }
+            break;
+        case LayoutAttributeRightTop:
+        {
+            frame.origin = CGPointMake(rect.origin.x + rect.size.width/2, rect.origin.y);
+            frame.size = NSMakeSize(rect.size.width/2, rect.size.height/2);
+        }
+            break;
+        case LayoutAttributeLeftBottom:
+        {
+            frame.origin = NSMakePoint(rect.origin.x, rect.origin.y + rect.size.height/2);
+            frame.size = NSMakeSize(rect.size.width/2, rect.size.height/2);
+        }
+            break;
+        case LayoutAttributeRightBottom:
+        {
+            frame.origin = CGPointMake(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height/2);
+            frame.size = NSMakeSize(rect.size.width/2, rect.size.height/2);
+        }
+            break;
     }
     
     return frame;
