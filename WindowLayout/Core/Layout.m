@@ -131,6 +131,9 @@
             break;
     }
     
+    if (frame.origin.y > 0) {
+        frame.origin.y += 23;
+    }
     return frame;
 }
 

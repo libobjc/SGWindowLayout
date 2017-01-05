@@ -67,7 +67,19 @@
 
 + (NSRect)frame
 {
-    return [NSScreen mainScreen].visibleFrame;
+    NSScreen * baseScreen = [NSScreen screens].firstObject;
+    NSRect baseFrame = baseScreen.frame;
+//    NSRect baseVisibleFrame = baseScreen.visibleFrame;
+    
+    NSScreen * mainScreen = [NSScreen mainScreen];
+    NSRect mainFrame = mainScreen.frame;
+    NSRect mainVisibleFrame = mainScreen.visibleFrame;
+    
+    NSRect rect = NSMakeRect(mainVisibleFrame.origin.x,
+                             baseFrame.size.height - mainFrame.size.height - mainFrame.origin.y,
+                             mainVisibleFrame.size.width, mainVisibleFrame.size.height);
+    
+    return rect;
 }
 
 @end
