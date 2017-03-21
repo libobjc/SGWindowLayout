@@ -31,15 +31,12 @@
     return application.processIdentifier;
 }
 
-+ (void)layoutWindowWithAttribute:(LayoutAttribute)attribute frame:(NSRect)frame
++ (void)layoutWindowWithAttribute:(LayoutAttribute)attribute screenFrame:(NSRect)screenFrame
 {
     if (!AXIsProcessTrusted()) {
         [self processTrusted];
         return;
     }
-    
-    CGPoint position = [self rect:frame attribute:attribute].origin;
-    CGSize size = [self rect:frame attribute:attribute].size;
     
     pid_t pid = [self fetchProcessIdentifier];
     
@@ -53,10 +50,32 @@
         return;
     }
     
+    AXValueRef currentPositionValue;
+    error = AXUIElementCopyAttributeValue(focusedWindow, kAXPositionAttribute, (CFTypeRef *)&currentPositionValue);
+    if (error != kAXErrorSuccess) {
+        NSLog(@"error : get focused window position error");
+    }
+    
+    CGPoint currentPoint;
+    AXValueGetValue(currentPositionValue, kAXValueCGPointType, &currentPoint);
+    
+    AXValueRef currentSizeValue;
+    error = AXUIElementCopyAttributeValue(focusedWindow, kAXSizeAttribute, (CFTypeRef *)&currentSizeValue);
+    if (error != kAXErrorSuccess) {
+        NSLog(@"error : get focused window size error");
+    }
+    
+    CGSize currentSize;
+    AXValueGetValue(currentSizeValue, kAXValueTypeCGSize, &currentSize);
+    
+    NSRect currentFrame = NSMakeRect(currentPoint.x, currentPoint.y, currentSize.width, currentSize.height);
+    CGRect resultFrame = [self realFrameWithScreenFrame:screenFrame currentFrame:currentFrame attribute:attribute];
+    CGPoint position = resultFrame.origin;
+    CGSize size = resultFrame.size;
+    
     AXValueRef positionValue = AXValueCreate(kAXValueCGPointType, &position);
     AXValueRef sizeValue = AXValueCreate(kAXValueCGSizeType, &size);
     
-//    AXUIElementSetAttributeValue(focusedWindow, (CFStringRef)NSAccessibilityPositionAttribute, positionValue);
     error = AXUIElementSetAttributeValue(focusedWindow, kAXPositionAttribute, positionValue);
     if (error != kAXErrorSuccess) {
         NSLog(@"error : set position error");
@@ -72,61 +91,67 @@
     CFRelease(sizeValue);
 }
 
-+ (NSRect)rect:(NSRect)rect attribute:(LayoutAttribute)attribute
++ (NSRect)realFrameWithScreenFrame:(NSRect)screenFrame currentFrame:(NSRect)currentFrame attribute:(LayoutAttribute)attribute
 {
     NSRect frame;
     switch (attribute) {
         case LayoutAttributeLeft:
         {
-            frame.origin = rect.origin;
-            frame.size = NSMakeSize(rect.size.width/2, rect.size.height);
+            frame.origin = screenFrame.origin;
+            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height);
         }
             break;
         case LayoutAttributeFull:
         {
-            frame = rect;
+            frame = screenFrame;
         }
             break;
         case LayoutAttributeRight:
         {
-            frame.origin = CGPointMake(rect.origin.x + rect.size.width/2, rect.origin.y);
-            frame.size = NSMakeSize(rect.size.width/2, rect.size.height);
+            frame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y);
+            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height);
         }
             break;
         case LayoutAttributeTop:
         {
-            frame.origin = rect.origin;
-            frame.size = NSMakeSize(rect.size.width, rect.size.height/2);
+            frame.origin = screenFrame.origin;
+            frame.size = NSMakeSize(screenFrame.size.width, screenFrame.size.height/2);
         }
             break;
         case LayoutAttributeBottom:
         {
-            frame.origin = NSMakePoint(rect.origin.x, rect.origin.y + rect.size.height/2);
-            frame.size = NSMakeSize(rect.size.width, rect.size.height/2);
+            frame.origin = NSMakePoint(screenFrame.origin.x, screenFrame.origin.y + screenFrame.size.height/2);
+            frame.size = NSMakeSize(screenFrame.size.width, screenFrame.size.height/2);
         }
             break;
         case LayoutAttributeLeftTop:
         {
-            frame.origin = rect.origin;
-            frame.size = NSMakeSize(rect.size.width/2, rect.size.height/2);
+            frame.origin = screenFrame.origin;
+            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
         case LayoutAttributeRightTop:
         {
-            frame.origin = CGPointMake(rect.origin.x + rect.size.width/2, rect.origin.y);
-            frame.size = NSMakeSize(rect.size.width/2, rect.size.height/2);
+            frame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y);
+            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
         case LayoutAttributeLeftBottom:
         {
-            frame.origin = NSMakePoint(rect.origin.x, rect.origin.y + rect.size.height/2);
-            frame.size = NSMakeSize(rect.size.width/2, rect.size.height/2);
+            frame.origin = NSMakePoint(screenFrame.origin.x, screenFrame.origin.y + screenFrame.size.height/2);
+            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
         case LayoutAttributeRightBottom:
         {
-            frame.origin = CGPointMake(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height/2);
-            frame.size = NSMakeSize(rect.size.width/2, rect.size.height/2);
+            frame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y + screenFrame.size.height/2);
+            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
+        }
+            break;
+        case LayoutAttributeSmaller:
+        {
+            frame.origin = currentFrame.origin;
+            frame.size = NSMakeSize(currentFrame.size.width*3/4, currentFrame.size.height/2);
         }
             break;
     }

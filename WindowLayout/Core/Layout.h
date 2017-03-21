@@ -18,11 +18,12 @@ typedef NS_ENUM(NSUInteger, LayoutAttribute) {
     LayoutAttributeRightTop,
     LayoutAttributeLeftBottom,
     LayoutAttributeRightBottom,
+    LayoutAttributeSmaller,
 };
 
 @interface Layout : NSObject
 
 + (void)setup;
-+ (void)layoutWindowWithAttribute:(LayoutAttribute)attribute frame:(NSRect)frame;
++ (void)layoutWindowWithAttribute:(LayoutAttribute)attribute screenFrame:(NSRect)screenFrame;
 
 @end

@@ -62,10 +62,10 @@
     } else if ([hotKey.name isEqualToString:@"C"]) {
         attribute = LayoutAttributeRightBottom;
     }
-    [Layout layoutWindowWithAttribute:attribute frame:[self frame]];
+    [Layout layoutWindowWithAttribute:attribute screenFrame:[self screenFrame]];
 }
 
-+ (NSRect)frame
++ (NSRect)screenFrame
 {
     NSScreen * baseScreen = [NSScreen screens].firstObject;
     NSRect baseFrame = baseScreen.frame;
