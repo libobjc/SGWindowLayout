@@ -1,3 +1,5 @@
+![Logo](https://github.com/libobjc/resource/blob/master/SGWindowLayout/SGWindowLayout-logo.png?raw=true)
+
 # SGWindowLayout for macOS
 
 SGWindowLayout 是一款 macOS 平台的窗口布局工具。
@@ -14,6 +16,11 @@ SGWindowLayout 是一款 macOS 平台的窗口布局工具。
 // 使用 control + a 将当前焦点窗口铺满屏幕左半部分。
 [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeLeft keyCode:SGWLKeyCodeA modifiers:SGWLModifiersKeyControl];
 ```
+
+## 效果演示
+
+![Example](https://github.com/libobjc/resource/blob/master/SGWindowLayout/SGWindowLayout-example.gif?raw=true)
+
 
 ## 注意事项
 
