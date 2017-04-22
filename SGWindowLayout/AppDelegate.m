@@ -22,14 +22,29 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // status item.
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:22];
     self.statusItem.image = [NSImage imageNamed:@"logo"];
     self.statusItem.menu = self.statusMenu;
     NSMenuItem * item = [self.statusMenu itemAtIndex:0];
     item.state = [SGWLLogin login].startAtLogin;
     
-    [SGWLHotKey setup];
-    [SGWLLayout setup];
+    // register hotkey.
+    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeLeft
+                                keyCode:SGWLKeyCodeA
+                              modifiers:SGWLModifiersKeyControl];
+    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeFull
+                                keyCode:SGWLKeyCodeS
+                              modifiers:SGWLModifiersKeyControl];
+    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeRight
+                                keyCode:SGWLKeyCodeD
+                              modifiers:SGWLModifiersKeyControl];
+    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeTop
+                                keyCode:SGWLKeyCodeW
+                              modifiers:SGWLModifiersKeyControl];
+    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeBottom
+                                keyCode:SGWLKeyCodeX
+                              modifiers:SGWLModifiersKeyControl];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

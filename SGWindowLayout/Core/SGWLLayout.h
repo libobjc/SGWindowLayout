@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef NS_ENUM(NSUInteger, SGWLLayoutAttribute) {
+typedef NS_ENUM(NSInteger, SGWLLayoutAttribute)
+{
     SGWLLayoutAttributeLeft,
     SGWLLayoutAttributeFull,
     SGWLLayoutAttributeRight,
@@ -24,6 +25,6 @@ typedef NS_ENUM(NSUInteger, SGWLLayoutAttribute) {
 @interface SGWLLayout : NSObject
 
 + (void)setup;
-+ (void)layoutWindowWithAttribute:(SGWLLayoutAttribute)attribute screenFrame:(NSRect)screenFrame;
++ (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute;
 
 @end

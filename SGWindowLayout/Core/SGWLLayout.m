@@ -12,9 +12,12 @@
 
 + (void)setup
 {
-    if (!AXIsProcessTrusted()) {
-        [self processTrusted];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (!AXIsProcessTrusted()) {
+            [self processTrusted];
+        }
+    });
 }
 
 + (void)processTrusted
@@ -31,7 +34,7 @@
     return application.processIdentifier;
 }
 
-+ (void)layoutWindowWithAttribute:(SGWLLayoutAttribute)attribute screenFrame:(NSRect)screenFrame
++ (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
 {
     if (!AXIsProcessTrusted()) {
         [self processTrusted];
@@ -69,7 +72,7 @@
     AXValueGetValue(currentSizeValue, kAXValueTypeCGSize, &currentSize);
     
     NSRect currentFrame = NSMakeRect(currentPoint.x, currentPoint.y, currentSize.width, currentSize.height);
-    CGRect resultFrame = [self realFrameWithScreenFrame:screenFrame currentFrame:currentFrame attribute:attribute];
+    CGRect resultFrame = [self realFrameCurrentFrame:currentFrame layoutAttribute:layoutAttribute];
     CGPoint position = resultFrame.origin;
     CGSize size = resultFrame.size;
     
@@ -91,74 +94,92 @@
     CFRelease(sizeValue);
 }
 
-+ (NSRect)realFrameWithScreenFrame:(NSRect)screenFrame currentFrame:(NSRect)currentFrame attribute:(SGWLLayoutAttribute)attribute
++ (NSRect)realFrameCurrentFrame:(NSRect)currentFrame layoutAttribute:(SGWLLayoutAttribute)layoutAttribute
 {
-    NSRect frame;
-    switch (attribute) {
+    NSRect realFrame;
+    NSRect screenFrame = [self screenFrame];
+    
+    switch (layoutAttribute) {
         case SGWLLayoutAttributeLeft:
         {
-            frame.origin = screenFrame.origin;
-            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height);
+            realFrame.origin = screenFrame.origin;
+            realFrame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height);
         }
             break;
         case SGWLLayoutAttributeFull:
         {
-            frame = screenFrame;
+            realFrame = screenFrame;
         }
             break;
         case SGWLLayoutAttributeRight:
         {
-            frame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y);
-            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height);
+            realFrame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y);
+            realFrame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height);
         }
             break;
         case SGWLLayoutAttributeTop:
         {
-            frame.origin = screenFrame.origin;
-            frame.size = NSMakeSize(screenFrame.size.width, screenFrame.size.height/2);
+            realFrame.origin = screenFrame.origin;
+            realFrame.size = NSMakeSize(screenFrame.size.width, screenFrame.size.height/2);
         }
             break;
         case SGWLLayoutAttributeBottom:
         {
-            frame.origin = NSMakePoint(screenFrame.origin.x, screenFrame.origin.y + screenFrame.size.height/2);
-            frame.size = NSMakeSize(screenFrame.size.width, screenFrame.size.height/2);
+            realFrame.origin = NSMakePoint(screenFrame.origin.x, screenFrame.origin.y + screenFrame.size.height/2);
+            realFrame.size = NSMakeSize(screenFrame.size.width, screenFrame.size.height/2);
         }
             break;
         case SGWLLayoutAttributeLeftTop:
         {
-            frame.origin = screenFrame.origin;
-            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
+            realFrame.origin = screenFrame.origin;
+            realFrame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
         case SGWLLayoutAttributeRightTop:
         {
-            frame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y);
-            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
+            realFrame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y);
+            realFrame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
         case SGWLLayoutAttributeLeftBottom:
         {
-            frame.origin = NSMakePoint(screenFrame.origin.x, screenFrame.origin.y + screenFrame.size.height/2);
-            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
+            realFrame.origin = NSMakePoint(screenFrame.origin.x, screenFrame.origin.y + screenFrame.size.height/2);
+            realFrame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
         case SGWLLayoutAttributeRightBottom:
         {
-            frame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y + screenFrame.size.height/2);
-            frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
+            realFrame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y + screenFrame.size.height/2);
+            realFrame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
         case SGWLLayoutAttributeSmaller:
         {
-            frame.origin = currentFrame.origin;
-            frame.size = NSMakeSize(currentFrame.size.width*3/4, currentFrame.size.height/2);
+            realFrame.origin = currentFrame.origin;
+            realFrame.size = NSMakeSize(currentFrame.size.width*3/4, currentFrame.size.height/2);
         }
             break;
     }
     
-    if (frame.origin.y > 0) {
-        frame.origin.y += 23;
+    if (realFrame.origin.y > 0) {
+        realFrame.origin.y += 23;
     }
+    return realFrame;
+}
+
++ (NSRect)screenFrame
+{
+    NSScreen * baseScreen = [NSScreen screens].firstObject;
+    NSRect baseFrame = baseScreen.frame;
+    
+    NSScreen * mainScreen = [NSScreen mainScreen];
+    NSRect mainFrame = mainScreen.frame;
+    NSRect mainVisibleFrame = mainScreen.visibleFrame;
+    
+    NSRect frame = NSMakeRect(mainVisibleFrame.origin.x,
+                             baseFrame.size.height - mainFrame.size.height - mainFrame.origin.y,
+                             mainVisibleFrame.size.width, mainVisibleFrame.size.height);
+    
     return frame;
 }
 
