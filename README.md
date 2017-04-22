@@ -10,7 +10,7 @@ SGWindowLayout 是一款 macOS 平台的窗口布局工具。
 
 ## Usage
 
-```
+```obj-c
 // 使用 control + a 将当前焦点窗口铺满屏幕左半部分。
 [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeLeft keyCode:SGWLKeyCodeA modifiers:SGWLModifiersKeyControl];
 ```
