@@ -1,18 +1,20 @@
-# WindowLayout for macOS
+# SGWindowLayout for macOS
 
-#### Modify current focused window's Frame by following HotKey :
+SGWindowLayout 是一款 macOS 平台的窗口布局工具。
+
+## 功能特点
+
+- 通过快捷键，快速布局焦点窗口的位置及大小。
+- 可自定义快捷键及布局方式。
+- 可设置开机自动启动。
+
+## Usage
+
 ```
-- control + A : Left
-- control + S : Full
-- control + D : Right
-- control + W : Top
-- control + X : Bottom
-- control + Q : LeftTop
-- control + E : RigthTop
-- control + Z : LeftBottom
-- control + C : RightBottom
+// 使用 control + a 将当前焦点窗口铺满屏幕左半部分。
+[SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeLeft keyCode:SGWLKeyCodeA modifiers:SGWLModifiersKeyControl];
 ```
 
-## Warning
-- Don't run in the Xcode directly！There are some error！
-- Please build and get 'WindowLayout.app' from Products directory
+## 注意事项
+
+- 如果出现在 Xcode 中直接 run 无响应的情况。可以先 build，再将 Products 下的 App 拷贝到 Applications 下进行使用。
