@@ -10,19 +10,19 @@
 		9C336D7D1DE2D4D300193A8F /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C336D7C1DE2D4D300193A8F /* Login.m */; };
 		9C64AFDB1DE295CC008E0AC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFDA1DE295CC008E0AC4 /* AppDelegate.m */; };
 		9C64AFDE1DE295CC008E0AC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFDD1DE295CC008E0AC4 /* main.m */; };
-		9C64AFE01DE295CC008E0AC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C64AFDF1DE295CC008E0AC4 /* Assets.xcassets */; };
 		9C64AFE31DE295CC008E0AC4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C64AFE11DE295CC008E0AC4 /* MainMenu.xib */; };
 		9C64AFED1DE29624008E0AC4 /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFEC1DE29624008E0AC4 /* Layout.m */; };
 		9C64AFF71DE29AB4008E0AC4 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFF21DE29AB4008E0AC4 /* PTHotKey.m */; };
 		9C64AFF81DE29AB4008E0AC4 /* PTHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFF41DE29AB4008E0AC4 /* PTHotKeyCenter.m */; };
 		9C64AFF91DE29AB4008E0AC4 /* PTKeyCombo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFF61DE29AB4008E0AC4 /* PTKeyCombo.m */; };
 		9C64AFFC1DE29AE6008E0AC4 /* HotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFFB1DE29AE6008E0AC4 /* HotKey.m */; };
+		9CBD4C381EAAED5500FDD330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C64AFDF1DE295CC008E0AC4 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9C336D7B1DE2D4D300193A8F /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		9C336D7C1DE2D4D300193A8F /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
-		9C64AFD61DE295CC008E0AC4 /* WindowLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindowLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C64AFD61DE295CC008E0AC4 /* SGWindowLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SGWindowLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C64AFD91DE295CC008E0AC4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9C64AFDA1DE295CC008E0AC4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9C64AFDD1DE295CC008E0AC4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		9C64AFCD1DE295CC008E0AC4 = {
 			isa = PBXGroup;
 			children = (
-				9C64AFD81DE295CC008E0AC4 /* WindowLayout */,
+				9C64AFD81DE295CC008E0AC4 /* SGWindowLayout */,
 				9C64AFD71DE295CC008E0AC4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,12 +63,12 @@
 		9C64AFD71DE295CC008E0AC4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C64AFD61DE295CC008E0AC4 /* WindowLayout.app */,
+				9C64AFD61DE295CC008E0AC4 /* SGWindowLayout.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9C64AFD81DE295CC008E0AC4 /* WindowLayout */ = {
+		9C64AFD81DE295CC008E0AC4 /* SGWindowLayout */ = {
 			isa = PBXGroup;
 			children = (
 				9C64AFEF1DE29AB4008E0AC4 /* Libs */,
@@ -80,7 +80,7 @@
 				9C64AFE41DE295CC008E0AC4 /* Info.plist */,
 				9C64AFDC1DE295CC008E0AC4 /* Supporting Files */,
 			);
-			path = WindowLayout;
+			path = SGWindowLayout;
 			sourceTree = "<group>";
 		};
 		9C64AFDC1DE295CC008E0AC4 /* Supporting Files */ = {
@@ -128,9 +128,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C64AFD51DE295CC008E0AC4 /* WindowLayout */ = {
+		9C64AFD51DE295CC008E0AC4 /* SGWindowLayout */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C64AFE71DE295CC008E0AC4 /* Build configuration list for PBXNativeTarget "WindowLayout" */;
+			buildConfigurationList = 9C64AFE71DE295CC008E0AC4 /* Build configuration list for PBXNativeTarget "SGWindowLayout" */;
 			buildPhases = (
 				9C64AFD21DE295CC008E0AC4 /* Sources */,
 				9C64AFD31DE295CC008E0AC4 /* Frameworks */,
@@ -140,9 +140,9 @@
 			);
 			dependencies = (
 			);
-			name = WindowLayout;
+			name = SGWindowLayout;
 			productName = WindowLayout;
-			productReference = 9C64AFD61DE295CC008E0AC4 /* WindowLayout.app */;
+			productReference = 9C64AFD61DE295CC008E0AC4 /* SGWindowLayout.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -161,7 +161,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9C64AFD11DE295CC008E0AC4 /* Build configuration list for PBXProject "WindowLayout" */;
+			buildConfigurationList = 9C64AFD11DE295CC008E0AC4 /* Build configuration list for PBXProject "SGWindowLayout" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -174,7 +174,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C64AFD51DE295CC008E0AC4 /* WindowLayout */,
+				9C64AFD51DE295CC008E0AC4 /* SGWindowLayout */,
 			);
 		};
 /* End PBXProject section */
@@ -184,7 +184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C64AFE01DE295CC008E0AC4 /* Assets.xcassets in Resources */,
+				9CBD4C381EAAED5500FDD330 /* Assets.xcassets in Resources */,
 				9C64AFE31DE295CC008E0AC4 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,9 +316,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 79WDBYQ4TC;
-				INFOPLIST_FILE = WindowLayout/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SGWindowLayout/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.single.WindowLayout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.libobjc.SGWindowLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -329,9 +329,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 79WDBYQ4TC;
-				INFOPLIST_FILE = WindowLayout/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SGWindowLayout/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.single.WindowLayout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.libobjc.SGWindowLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -339,7 +339,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9C64AFD11DE295CC008E0AC4 /* Build configuration list for PBXProject "WindowLayout" */ = {
+		9C64AFD11DE295CC008E0AC4 /* Build configuration list for PBXProject "SGWindowLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C64AFE51DE295CC008E0AC4 /* Debug */,
@@ -348,7 +348,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C64AFE71DE295CC008E0AC4 /* Build configuration list for PBXNativeTarget "WindowLayout" */ = {
+		9C64AFE71DE295CC008E0AC4 /* Build configuration list for PBXNativeTarget "SGWindowLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C64AFE81DE295CC008E0AC4 /* Debug */,
