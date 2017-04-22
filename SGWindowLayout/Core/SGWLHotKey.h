@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HotKey : NSObject
+@interface SGWLHotKey : NSObject
 
 + (void)setup;
 

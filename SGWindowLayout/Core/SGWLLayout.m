@@ -6,9 +6,9 @@
 //  Copyright © 2016年 single. All rights reserved.
 //
 
-#import "Layout.h"
+#import "SGWLLayout.h"
 
-@implementation Layout
+@implementation SGWLLayout
 
 + (void)setup
 {
@@ -31,7 +31,7 @@
     return application.processIdentifier;
 }
 
-+ (void)layoutWindowWithAttribute:(LayoutAttribute)attribute screenFrame:(NSRect)screenFrame
++ (void)layoutWindowWithAttribute:(SGWLLayoutAttribute)attribute screenFrame:(NSRect)screenFrame
 {
     if (!AXIsProcessTrusted()) {
         [self processTrusted];
@@ -91,64 +91,64 @@
     CFRelease(sizeValue);
 }
 
-+ (NSRect)realFrameWithScreenFrame:(NSRect)screenFrame currentFrame:(NSRect)currentFrame attribute:(LayoutAttribute)attribute
++ (NSRect)realFrameWithScreenFrame:(NSRect)screenFrame currentFrame:(NSRect)currentFrame attribute:(SGWLLayoutAttribute)attribute
 {
     NSRect frame;
     switch (attribute) {
-        case LayoutAttributeLeft:
+        case SGWLLayoutAttributeLeft:
         {
             frame.origin = screenFrame.origin;
             frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height);
         }
             break;
-        case LayoutAttributeFull:
+        case SGWLLayoutAttributeFull:
         {
             frame = screenFrame;
         }
             break;
-        case LayoutAttributeRight:
+        case SGWLLayoutAttributeRight:
         {
             frame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y);
             frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height);
         }
             break;
-        case LayoutAttributeTop:
+        case SGWLLayoutAttributeTop:
         {
             frame.origin = screenFrame.origin;
             frame.size = NSMakeSize(screenFrame.size.width, screenFrame.size.height/2);
         }
             break;
-        case LayoutAttributeBottom:
+        case SGWLLayoutAttributeBottom:
         {
             frame.origin = NSMakePoint(screenFrame.origin.x, screenFrame.origin.y + screenFrame.size.height/2);
             frame.size = NSMakeSize(screenFrame.size.width, screenFrame.size.height/2);
         }
             break;
-        case LayoutAttributeLeftTop:
+        case SGWLLayoutAttributeLeftTop:
         {
             frame.origin = screenFrame.origin;
             frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
-        case LayoutAttributeRightTop:
+        case SGWLLayoutAttributeRightTop:
         {
             frame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y);
             frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
-        case LayoutAttributeLeftBottom:
+        case SGWLLayoutAttributeLeftBottom:
         {
             frame.origin = NSMakePoint(screenFrame.origin.x, screenFrame.origin.y + screenFrame.size.height/2);
             frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
-        case LayoutAttributeRightBottom:
+        case SGWLLayoutAttributeRightBottom:
         {
             frame.origin = CGPointMake(screenFrame.origin.x + screenFrame.size.width/2, screenFrame.origin.y + screenFrame.size.height/2);
             frame.size = NSMakeSize(screenFrame.size.width/2, screenFrame.size.height/2);
         }
             break;
-        case LayoutAttributeSmaller:
+        case SGWLLayoutAttributeSmaller:
         {
             frame.origin = currentFrame.origin;
             frame.size = NSMakeSize(currentFrame.size.width*3/4, currentFrame.size.height/2);

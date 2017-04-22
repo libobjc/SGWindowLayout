@@ -6,12 +6,12 @@
 //  Copyright © 2016年 single. All rights reserved.
 //
 
-#import "HotKey.h"
+#import "SGWLHotKey.h"
+#import "SGWLLayout.h"
 #import "PTHotKey.h"
 #import "PTHotKeyCenter.h"
-#import "Layout.h"
 
-@implementation HotKey
+@implementation SGWLHotKey
 
 + (void)setup
 {
@@ -42,34 +42,33 @@
 
 + (void)globalHotKeyDidPress:(PTHotKey *)hotKey
 {
-    LayoutAttribute attribute;
+    SGWLLayoutAttribute attribute;
     if ([hotKey.name isEqualToString:@"A"]) {
-        attribute = LayoutAttributeLeft;
+        attribute = SGWLLayoutAttributeLeft;
     } else if ([hotKey.name isEqualToString:@"S"]) {
-        attribute = LayoutAttributeFull;
+        attribute = SGWLLayoutAttributeFull;
     } else if ([hotKey.name isEqualToString:@"D"]) {
-        attribute = LayoutAttributeRight;
+        attribute = SGWLLayoutAttributeRight;
     } else if ([hotKey.name isEqualToString:@"W"]) {
-        attribute = LayoutAttributeTop;
+        attribute = SGWLLayoutAttributeTop;
     } else if ([hotKey.name isEqualToString:@"X"]) {
-        attribute = LayoutAttributeBottom;
+        attribute = SGWLLayoutAttributeBottom;
     } else if ([hotKey.name isEqualToString:@"Q"]) {
-        attribute = LayoutAttributeLeftTop;
+        attribute = SGWLLayoutAttributeLeftTop;
     } else if ([hotKey.name isEqualToString:@"E"]) {
-        attribute = LayoutAttributeRightTop;
+        attribute = SGWLLayoutAttributeRightTop;
     } else if ([hotKey.name isEqualToString:@"Z"]) {
-        attribute = LayoutAttributeLeftBottom;
+        attribute = SGWLLayoutAttributeLeftBottom;
     } else if ([hotKey.name isEqualToString:@"C"]) {
-        attribute = LayoutAttributeRightBottom;
+        attribute = SGWLLayoutAttributeRightBottom;
     }
-    [Layout layoutWindowWithAttribute:attribute screenFrame:[self screenFrame]];
+    [SGWLLayout layoutWindowWithAttribute:attribute screenFrame:[self screenFrame]];
 }
 
 + (NSRect)screenFrame
 {
     NSScreen * baseScreen = [NSScreen screens].firstObject;
     NSRect baseFrame = baseScreen.frame;
-//    NSRect baseVisibleFrame = baseScreen.visibleFrame;
     
     NSScreen * mainScreen = [NSScreen mainScreen];
     NSRect mainFrame = mainScreen.frame;

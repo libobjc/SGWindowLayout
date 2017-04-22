@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "HotKey.h"
-#import "Layout.h"
+#import "SGWLHotKey.h"
+#import "SGWLLayout.h"
 #import "SGWLLogin.h"
 
 @interface AppDelegate ()
@@ -28,8 +28,8 @@
     NSMenuItem * item = [self.statusMenu itemAtIndex:0];
     item.state = [SGWLLogin login].startAtLogin;
     
-    [HotKey setup];
-    [Layout setup];
+    [SGWLHotKey setup];
+    [SGWLLayout setup];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
