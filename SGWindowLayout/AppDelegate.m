@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "HotKey.h"
 #import "Layout.h"
-#import "Login.h"
+#import "SGWLLogin.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +26,7 @@
     self.statusItem.image = [NSImage imageNamed:@"logo"];
     self.statusItem.menu = self.statusMenu;
     NSMenuItem * item = [self.statusMenu itemAtIndex:0];
-    item.state = [[Login login] state];
+    item.state = [SGWLLogin login].startAtLogin;
     
     [HotKey setup];
     [Layout setup];
@@ -50,7 +50,7 @@
 - (IBAction)startAtLogin:(NSMenuItem *)menuItem
 {
     menuItem.state = !menuItem.state;
-    [[Login login] startAtLogin:menuItem.state];
+    [SGWLLogin login].startAtLogin = menuItem.state;
 }
 
 @end

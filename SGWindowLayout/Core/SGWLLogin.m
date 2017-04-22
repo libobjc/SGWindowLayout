@@ -6,22 +6,20 @@
 //  Copyright © 2016年 single. All rights reserved.
 //
 
-#import "Login.h"
+#import "SGWLLogin.h"
 
-@interface Login ()
+@interface SGWLLogin ()
 
-{
-    LSSharedFileListItemRef _itemHandle;
-    LSSharedFileListRef _sharedFileList;
-}
+@property (nonatomic, assign) LSSharedFileListRef sharedFileList;
+@property (nonatomic, assign) LSSharedFileListItemRef shareedFileListItem;
 
 @end
 
-@implementation Login
+@implementation SGWLLogin
 
 + (instancetype)login
 {
-    static Login * login = nil;
+    static SGWLLogin * login = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         login = [[self alloc] init];
@@ -29,32 +27,34 @@
     return login;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored"-Wdeprecated-declarations"
+
 - (instancetype)init
 {
     if (self = [super init]) {
-        _sharedFileList = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+        self.sharedFileList = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
     }
     return self;
 }
 
-- (void)startAtLogin:(BOOL)flag
+- (void)setStartAtLogin:(BOOL)startAtLogin
 {
     NSURL * bundleURL = [[NSBundle mainBundle] bundleURL];
-    
-    if (flag) {
-        _itemHandle = LSSharedFileListInsertItemURL(_sharedFileList, kLSSharedFileListItemLast, NULL, NULL, (__bridge CFURLRef)bundleURL, NULL, NULL);
-        if (_itemHandle == NULL) {
-            NSLog(@"注册开机启动失败");
+    if (startAtLogin) {
+        self.shareedFileListItem = LSSharedFileListInsertItemURL(self.sharedFileList, kLSSharedFileListItemLast, NULL, NULL, (__bridge CFURLRef)bundleURL, NULL, NULL);
+        if (self.shareedFileListItem == NULL) {
+            NSLog(@"register start at login failure!");
         }
     } else {
-        LSSharedFileListItemRemove(_sharedFileList, _itemHandle);
+        LSSharedFileListItemRemove(self.sharedFileList, self.shareedFileListItem);
     }
 }
 
-- (BOOL)state
+- (BOOL)startAtLogin
 {
     UInt32 seed = 0;
-    CFArrayRef loginItemsSnapshot = LSSharedFileListCopySnapshot(_sharedFileList, &seed);
+    CFArrayRef loginItemsSnapshot = LSSharedFileListCopySnapshot(self.sharedFileList, &seed);
     if (loginItemsSnapshot == NULL) return NO;
     
     CFIndex totalCount = CFArrayGetCount(loginItemsSnapshot);
@@ -67,7 +67,7 @@
         NSURL * url =  CFBridgingRelease(urlRef);
         
         if ([url isEqualTo:[[NSBundle mainBundle] bundleURL]]) {
-            _itemHandle = handle;
+            self.shareedFileListItem = handle;
             CFRelease(loginItemsSnapshot);
             return YES;
         }
@@ -75,5 +75,7 @@
     CFRelease(loginItemsSnapshot);
     return NO;
 }
+
+#pragma clang diagnostic pop
 
 @end

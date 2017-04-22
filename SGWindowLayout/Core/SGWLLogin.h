@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Login : NSObject
+@interface SGWLLogin : NSObject
 
 + (instancetype)login;
-- (BOOL)state;
-- (void)startAtLogin:(BOOL)flag;
+
+@property (nonatomic, assign) BOOL startAtLogin;
 
 @end
