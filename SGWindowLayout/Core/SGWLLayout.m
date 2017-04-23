@@ -156,7 +156,7 @@
         case SGWLLayoutAttributeSmaller:
         {
             realFrame.origin = currentFrame.origin;
-            realFrame.size = NSMakeSize(currentFrame.size.width*3/4, currentFrame.size.height/2);
+            realFrame.size = NSMakeSize(currentFrame.size.width/2, currentFrame.size.height/2);
         }
             break;
     }
