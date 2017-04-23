@@ -1,6 +1,6 @@
 ![Logo](https://github.com/libobjc/resource/blob/master/SGWindowLayout/SGWindowLayout-logo.png?raw=true)
 
-# SGWindowLayout for macOS
+# SGWindowLayout
 
 SGWindowLayout 是一款 macOS 窗口布局小应用。
 
