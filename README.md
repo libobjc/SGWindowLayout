@@ -27,8 +27,6 @@ SGWindowLayout 是一款 macOS 窗口布局小应用。
 [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeLeft keyCode:SGWLKeyCodeA modifiers:SGWLModifiersKeyControl];
 ```
 
-### 默认加入了
-
 ## 效果演示
 
 ![Example](https://github.com/libobjc/resource/blob/master/SGWindowLayout/SGWindowLayout-example.gif?raw=true)
