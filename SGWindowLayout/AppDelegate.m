@@ -30,6 +30,11 @@
     item.state = [SGWLLogin login].startAtLogin;
     
     // register hotkey.
+    [self registerHotKey];
+}
+
+- (void)registerHotKey
+{
     [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeLeft
                                 keyCode:SGWLKeyCodeA
                               modifiers:SGWLModifiersKeyControl];
