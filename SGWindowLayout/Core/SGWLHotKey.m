@@ -12,7 +12,7 @@
 
 @interface SGWLHotKey ()
 
-@property (nonatomic, strong) NSMutableDictionary <NSString *, void (^)()> * handlers;
+@property (nonatomic, strong) NSMutableDictionary <NSString *, void (^)(void)> * handlers;
 
 @end
 
@@ -28,7 +28,7 @@
     return obj;
 }
 
-+ (void)registerKeyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers handler:(void (^)())handler
++ (void)registerKeyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers handler:(void (^)(void))handler
 {
     [[SGWLHotKey sharedInstance] registerKeyCode:keyCode modifiers:modifiers handler:handler];
 }
@@ -42,7 +42,7 @@
     return self;
 }
 
-- (void)registerKeyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers handler:(void (^)())handler
+- (void)registerKeyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers handler:(void (^)(void))handler
 {
     int intModifiers = controlKey;
     switch (modifiers)
@@ -63,7 +63,7 @@
     [self registerFreeKeyCode:keyCode freeModifiers:intModifiers handler:handler];
 }
 
-- (void)registerFreeKeyCode:(int)keyCode freeModifiers:(int)modifiers handler:(void (^)())handler
+- (void)registerFreeKeyCode:(int)keyCode freeModifiers:(int)modifiers handler:(void (^)(void))handler
 {
     static int index = 0;
     NSString * name = [NSString stringWithFormat:@"%d", index++];
@@ -84,7 +84,7 @@
 
 - (void)globalHotKeyDidPress:(PTHotKey *)hotKey
 {
-    void (^handler)() = [self.handlers objectForKey:hotKey.name];
+    void (^handler)(void) = [self.handlers objectForKey:hotKey.name];
     if (handler)
     {
         handler();

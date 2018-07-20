@@ -31,6 +31,6 @@ typedef NS_ENUM(NSInteger, SGWLModifiersKey)
 
 @interface SGWLHotKey : NSObject
 
-+ (void)registerKeyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers handler:(void (^)())handler;
++ (void)registerKeyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers handler:(void (^)(void))handler;
 
 @end
