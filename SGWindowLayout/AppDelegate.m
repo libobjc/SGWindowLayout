@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SGWLHotKey.h"
 #import "SGWLLayout.h"
+#import "SGWLCursor.h"
 #import "SGWLLogin.h"
 
 @interface AppDelegate ()
@@ -22,34 +23,32 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // status item.
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:22];
     self.statusItem.image = [NSImage imageNamed:@"logo"];
     self.statusItem.menu = self.statusMenu;
     NSMenuItem * item = [self.statusMenu itemAtIndex:0];
     item.state = [SGWLLogin login].startAtLogin;
     
-    // register hotkey.
     [self registerHotKey];
 }
 
 - (void)registerHotKey
 {
-    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeLeft
-                                keyCode:SGWLKeyCodeA
-                              modifiers:SGWLModifiersKeyControl];
-    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeFull
-                                keyCode:SGWLKeyCodeS
-                              modifiers:SGWLModifiersKeyControl];
-    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeRight
-                                keyCode:SGWLKeyCodeD
-                              modifiers:SGWLModifiersKeyControl];
-    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeTop
-                                keyCode:SGWLKeyCodeW
-                              modifiers:SGWLModifiersKeyControl];
-    [SGWLHotKey registerLayoutAttribute:SGWLLayoutAttributeBottom
-                                keyCode:SGWLKeyCodeX
-                              modifiers:SGWLModifiersKeyControl];
+    [SGWLHotKey registerKeyCode:SGWLKeyCodeQ modifiers:SGWLModifiersKeyControl handler:^{
+        [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeLeft];
+    }];
+    [SGWLHotKey registerKeyCode:SGWLKeyCodeW modifiers:SGWLModifiersKeyControl handler:^{
+        [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeFull];
+    }];
+    [SGWLHotKey registerKeyCode:SGWLKeyCodeE modifiers:SGWLModifiersKeyControl handler:^{
+        [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeRight];
+    }];
+    [SGWLHotKey registerKeyCode:SGWLKeyCodeS modifiers:SGWLModifiersKeyControl handler:^{
+        [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeSmaller];
+    }];
+    [SGWLHotKey registerKeyCode:SGWLKeyCodeZ modifiers:SGWLModifiersKeyControl handler:^{
+        [SGWLCursor swapCursor];
+    }];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

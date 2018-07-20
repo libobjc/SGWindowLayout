@@ -13,6 +13,7 @@
 		9C64AFE31DE295CC008E0AC4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C64AFE11DE295CC008E0AC4 /* MainMenu.xib */; };
 		9C64AFED1DE29624008E0AC4 /* SGWLLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFEC1DE29624008E0AC4 /* SGWLLayout.m */; };
 		9C64AFFC1DE29AE6008E0AC4 /* SGWLHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFFB1DE29AE6008E0AC4 /* SGWLHotKey.m */; };
+		9CB78BB42101BF0000DCE0AC /* SGWLCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB78BB32101BF0000DCE0AC /* SGWLCursor.m */; };
 		9CBD4C381EAAED5500FDD330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C64AFDF1DE295CC008E0AC4 /* Assets.xcassets */; };
 		9CBD4C411EAAEE6900FDD330 /* PTHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD4C3C1EAAEE6900FDD330 /* PTHotKey.m */; };
 		9CBD4C421EAAEE6900FDD330 /* PTHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD4C3E1EAAEE6900FDD330 /* PTHotKeyCenter.m */; };
@@ -33,6 +34,8 @@
 		9C64AFEC1DE29624008E0AC4 /* SGWLLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGWLLayout.m; sourceTree = "<group>"; };
 		9C64AFFA1DE29AE6008E0AC4 /* SGWLHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGWLHotKey.h; sourceTree = "<group>"; };
 		9C64AFFB1DE29AE6008E0AC4 /* SGWLHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGWLHotKey.m; sourceTree = "<group>"; };
+		9CB78BB22101BF0000DCE0AC /* SGWLCursor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGWLCursor.h; sourceTree = "<group>"; };
+		9CB78BB32101BF0000DCE0AC /* SGWLCursor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGWLCursor.m; sourceTree = "<group>"; };
 		9CBD4C3B1EAAEE6900FDD330 /* PTHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKey.h; sourceTree = "<group>"; };
 		9CBD4C3C1EAAEE6900FDD330 /* PTHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTHotKey.m; sourceTree = "<group>"; };
 		9CBD4C3D1EAAEE6900FDD330 /* PTHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTHotKeyCenter.h; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 				9C64AFFB1DE29AE6008E0AC4 /* SGWLHotKey.m */,
 				9C336D7B1DE2D4D300193A8F /* SGWLLogin.h */,
 				9C336D7C1DE2D4D300193A8F /* SGWLLogin.m */,
+				9CB78BB22101BF0000DCE0AC /* SGWLCursor.h */,
+				9CB78BB32101BF0000DCE0AC /* SGWLCursor.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				9C64AFFC1DE29AE6008E0AC4 /* SGWLHotKey.m in Sources */,
 				9CBD4C421EAAEE6900FDD330 /* PTHotKeyCenter.m in Sources */,
 				9CBD4C431EAAEE6900FDD330 /* PTKeyCombo.m in Sources */,
+				9CB78BB42101BF0000DCE0AC /* SGWLCursor.m in Sources */,
 				9C336D7D1DE2D4D300193A8F /* SGWLLogin.m in Sources */,
 				9C64AFDE1DE295CC008E0AC4 /* main.m in Sources */,
 				9C64AFDB1DE295CC008E0AC4 /* AppDelegate.m in Sources */,

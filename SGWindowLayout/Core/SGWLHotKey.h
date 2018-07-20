@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SGWLLayout.h"
 
 typedef NS_ENUM(NSInteger, SGWLKeyCode)
 {
@@ -32,12 +31,6 @@ typedef NS_ENUM(NSInteger, SGWLModifiersKey)
 
 @interface SGWLHotKey : NSObject
 
-+ (void)registerLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
-                        keyCode:(SGWLKeyCode)keyCode
-                      modifiers:(SGWLModifiersKey)modifiers;
-
-+ (void)registerLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
-                    freeKeyCode:(int)keyCode
-                  freeModifiers:(int)modifiers;
++ (void)registerKeyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers handler:(void (^)())handler;
 
 @end

@@ -24,7 +24,6 @@ typedef NS_ENUM(NSInteger, SGWLLayoutAttribute)
 
 @interface SGWLLayout : NSObject
 
-+ (void)setup;
 + (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute;
 
 @end

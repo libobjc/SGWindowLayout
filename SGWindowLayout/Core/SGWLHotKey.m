@@ -7,16 +7,46 @@
 //
 
 #import "SGWLHotKey.h"
-#import "SGWLLayout.h"
 #import "PTHotKey.h"
 #import "PTHotKeyCenter.h"
 
+@interface SGWLHotKey ()
+
+@property (nonatomic, strong) NSMutableDictionary <NSString *, void (^)()> * handlers;
+
+@end
+
 @implementation SGWLHotKey
 
-+ (void)registerLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute keyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers
++ (instancetype)sharedInstance
+{
+    static SGWLHotKey * obj = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        obj = [[SGWLHotKey alloc] init];
+    });
+    return obj;
+}
+
++ (void)registerKeyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers handler:(void (^)())handler
+{
+    [[SGWLHotKey sharedInstance] registerKeyCode:keyCode modifiers:modifiers handler:handler];
+}
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        self.handlers = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
+- (void)registerKeyCode:(SGWLKeyCode)keyCode modifiers:(SGWLModifiersKey)modifiers handler:(void (^)())handler
 {
     int intModifiers = controlKey;
-    switch (modifiers) {
+    switch (modifiers)
+    {
         case SGWLModifiersKeyControl:
             intModifiers = controlKey;
             break;
@@ -30,36 +60,35 @@
             intModifiers = shiftKey;
             break;
     }
-    
-    [self registerLayoutAttribute:layoutAttribute
-                      freeKeyCode:keyCode
-                    freeModifiers:intModifiers];
+    [self registerFreeKeyCode:keyCode freeModifiers:intModifiers handler:handler];
 }
 
-+ (void)registerLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
-                    freeKeyCode:(int)keyCode
-                  freeModifiers:(int)modifiers
+- (void)registerFreeKeyCode:(int)keyCode freeModifiers:(int)modifiers handler:(void (^)())handler
 {
-    [SGWLLayout setup];
-    
-    NSString * keyName = [NSString stringWithFormat:@"%ld", layoutAttribute];
+    static int index = 0;
+    NSString * name = [NSString stringWithFormat:@"%d", index++];
     
     PTKeyCombo * keyCombo = [PTKeyCombo keyComboWithKeyCode:keyCode modifiers:modifiers];
     
-    PTHotKey* ptHotKey = [[PTHotKey alloc] init];
-    [ptHotKey setName:keyName];
+    PTHotKey * ptHotKey = [[PTHotKey alloc] init];
+    [ptHotKey setName:name];
     [ptHotKey setKeyCombo:keyCombo];
     [ptHotKey setIsExclusive:YES];
     [ptHotKey setTarget:self];
     [ptHotKey setAction:@selector(globalHotKeyDidPress:)];
     
+    [self.handlers setObject:handler forKey:name];
+    
     [[PTHotKeyCenter sharedCenter] registerHotKey:ptHotKey];
 }
 
-+ (void)globalHotKeyDidPress:(PTHotKey *)hotKey
+- (void)globalHotKeyDidPress:(PTHotKey *)hotKey
 {
-    SGWLLayoutAttribute layoutAttribute = [hotKey.name integerValue];
-    [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:layoutAttribute];
+    void (^handler)() = [self.handlers objectForKey:hotKey.name];
+    if (handler)
+    {
+        handler();
+    }
 }
 
 @end

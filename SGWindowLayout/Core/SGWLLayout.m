@@ -10,31 +10,34 @@
 
 @implementation SGWLLayout
 
-+ (void)setup
++ (instancetype)sharedInstance
 {
+    static SGWLLayout * obj = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if (!AXIsProcessTrusted()) {
-            [self processTrusted];
-        }
+        obj = [[SGWLLayout alloc] init];
     });
-}
-
-+ (void)processTrusted
-{
-    CFMutableDictionaryRef options = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
-    CFDictionaryAddValue(options, kAXTrustedCheckOptionPrompt, kCFBooleanTrue);
-    AXIsProcessTrustedWithOptions(options);
-    CFRelease(options);
-}
-
-+ (pid_t)fetchProcessIdentifier
-{
-    NSRunningApplication * application = [NSWorkspace sharedWorkspace].frontmostApplication;
-    return application.processIdentifier;
+    return obj;
 }
 
 + (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
+{
+    [[SGWLLayout sharedInstance] layoutCurrentFocusedWindowWithLayoutAttribute:layoutAttribute];
+}
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        if (!AXIsProcessTrusted())
+        {
+            [self processTrusted];
+        }
+    }
+    return self;
+}
+
+- (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
 {
     if (!AXIsProcessTrusted()) {
         [self processTrusted];
@@ -94,7 +97,21 @@
     CFRelease(sizeValue);
 }
 
-+ (NSRect)realFrameCurrentFrame:(NSRect)currentFrame layoutAttribute:(SGWLLayoutAttribute)layoutAttribute
+- (void)processTrusted
+{
+    CFMutableDictionaryRef options = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
+    CFDictionaryAddValue(options, kAXTrustedCheckOptionPrompt, kCFBooleanTrue);
+    AXIsProcessTrustedWithOptions(options);
+    CFRelease(options);
+}
+
+- (pid_t)fetchProcessIdentifier
+{
+    NSRunningApplication * application = [NSWorkspace sharedWorkspace].frontmostApplication;
+    return application.processIdentifier;
+}
+
+- (NSRect)realFrameCurrentFrame:(NSRect)currentFrame layoutAttribute:(SGWLLayoutAttribute)layoutAttribute
 {
     NSRect realFrame;
     NSRect screenFrame = [self screenFrame];
@@ -167,7 +184,7 @@
     return realFrame;
 }
 
-+ (NSRect)screenFrame
+- (NSRect)screenFrame
 {
     NSScreen * baseScreen = [NSScreen screens].firstObject;
     NSRect baseFrame = baseScreen.frame;
