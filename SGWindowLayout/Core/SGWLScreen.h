@@ -1,5 +1,5 @@
 //
-//  SGWLCursor.h
+//  SGWLScreen.h
 //  SGWindowLayout
 //
 //  Created by Single on 2018/7/20.
@@ -8,9 +8,9 @@
 
 #import <AppKit/AppKit.h>
 
-@interface SGWLCursor : NSObject
+@interface SGWLScreen : NSObject
 
-+ (NSScreen *)swapCursor;
-+ (BOOL)swapCursorToScreenIfNeeded:(NSScreen *)screen;
++ (NSScreen *)screenWithPoint:(CGPoint)point;
++ (NSScreen *)nextScreenWithPoint:(CGPoint)point;
 
 @end

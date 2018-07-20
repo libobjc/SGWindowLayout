@@ -7,6 +7,8 @@
 //
 
 #import "SGWLLayout.h"
+#import "SGWLScreen.h"
+#import "SGWLPoint.h"
 
 @implementation SGWLLayout
 
@@ -20,9 +22,14 @@
     return obj;
 }
 
++ (NSScreen *)swapScreen
+{
+    return [[SGWLLayout sharedInstance] swapScreen];
+}
+
 + (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
 {
-    [[SGWLLayout sharedInstance] layoutCurrentFocusedWindowWithLayoutAttribute:layoutAttribute];
+    [[SGWLLayout sharedInstance] layoutCurrentFocusedWindowWithLayoutAttribute:layoutAttribute screen:[NSScreen mainScreen]];
 }
 
 - (instancetype)init
@@ -37,14 +44,23 @@
     return self;
 }
 
-- (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
+- (NSScreen *)swapScreen
 {
-    if (!AXIsProcessTrusted()) {
+    CGPoint point = [SGWLPoint focusedWindowLocation];
+    NSScreen * screen = [SGWLScreen nextScreenWithPoint:point];
+    [self layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeFull screen:screen];
+    return screen;
+}
+
+- (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute screen:(NSScreen *)screen
+{
+    if (!AXIsProcessTrusted())
+    {
         [self processTrusted];
         return;
     }
     
-    pid_t pid = [self fetchProcessIdentifier];
+    pid_t pid = [NSWorkspace sharedWorkspace].frontmostApplication.processIdentifier;
     
     AXUIElementRef application = AXUIElementCreateApplication(pid);
     
@@ -69,13 +85,14 @@
     error = AXUIElementCopyAttributeValue(focusedWindow, kAXSizeAttribute, (CFTypeRef *)&currentSizeValue);
     if (error != kAXErrorSuccess) {
         NSLog(@"error : get focused window size error");
+        return;
     }
     
     CGSize currentSize;
     AXValueGetValue(currentSizeValue, kAXValueTypeCGSize, &currentSize);
     
     NSRect currentFrame = NSMakeRect(currentPoint.x, currentPoint.y, currentSize.width, currentSize.height);
-    CGRect resultFrame = [self realFrameCurrentFrame:currentFrame layoutAttribute:layoutAttribute];
+    CGRect resultFrame = [self realFrameCurrentFrame:currentFrame layoutAttribute:layoutAttribute screen:screen];
     CGPoint position = resultFrame.origin;
     CGSize size = resultFrame.size;
     
@@ -105,16 +122,10 @@
     CFRelease(options);
 }
 
-- (pid_t)fetchProcessIdentifier
-{
-    NSRunningApplication * application = [NSWorkspace sharedWorkspace].frontmostApplication;
-    return application.processIdentifier;
-}
-
-- (NSRect)realFrameCurrentFrame:(NSRect)currentFrame layoutAttribute:(SGWLLayoutAttribute)layoutAttribute
+- (NSRect)realFrameCurrentFrame:(NSRect)currentFrame layoutAttribute:(SGWLLayoutAttribute)layoutAttribute screen:(NSScreen *)screen
 {
     NSRect realFrame;
-    NSRect screenFrame = [self screenFrame];
+    NSRect screenFrame = [self frameForScreen:screen];
     
     switch (layoutAttribute) {
         case SGWLLayoutAttributeLeft:
@@ -184,18 +195,18 @@
     return realFrame;
 }
 
-- (NSRect)screenFrame
+- (NSRect)frameForScreen:(NSScreen *)screen
 {
     NSScreen * baseScreen = [NSScreen screens].firstObject;
     NSRect baseFrame = baseScreen.frame;
     
-    NSScreen * mainScreen = [NSScreen mainScreen];
-    NSRect mainFrame = mainScreen.frame;
-    NSRect mainVisibleFrame = mainScreen.visibleFrame;
+    NSRect mainFrame = screen.frame;
+    NSRect mainVisibleFrame = screen.visibleFrame;
     
     NSRect frame = NSMakeRect(mainVisibleFrame.origin.x,
-                             baseFrame.size.height - mainFrame.size.height - mainFrame.origin.y,
-                             mainVisibleFrame.size.width, mainVisibleFrame.size.height);
+                              baseFrame.size.height - mainFrame.size.height - mainFrame.origin.y,
+                              mainVisibleFrame.size.width,
+                              mainVisibleFrame.size.height);
     
     return frame;
 }

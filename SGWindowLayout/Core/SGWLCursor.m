@@ -7,6 +7,8 @@
 //
 
 #import "SGWLCursor.h"
+#import "SGWLScreen.h"
+#import "SGWLPoint.h"
 
 @interface SGWLCursor ()
 
@@ -27,39 +29,45 @@
     return obj;
 }
 
-+ (void)swapCursor
++ (NSScreen *)swapCursor
 {
-    [[self sharedInstance] swapCursor];
+    return [[self sharedInstance] swapCursor];
 }
 
-- (void)swapCursor
++ (BOOL)swapCursorToScreenIfNeeded:(NSScreen *)screen
 {
-    int index = 0;
-    CGPoint point = [NSEvent mouseLocation];
-    for (int i = 0; i < [NSScreen screens].count; i++)
-    {
-        NSScreen * screen = [[NSScreen screens] objectAtIndex:i];
-        if (CGRectContainsPoint(screen.frame, point))
-        {
-            index = i + 1;
-        }
-    }
-    if (index == [NSScreen screens].count)
-    {
-        index = 0;
-    }
-    if (index < [NSScreen screens].count)
-    {
-        NSScreen * screen = [[NSScreen screens] objectAtIndex:index];
-        [self moveToScreen:screen];
-    }
+    return [[self sharedInstance] swapCursorToScreenIfNeeded:screen];
 }
 
-- (void)moveToScreen:(NSScreen *)screen
+- (NSScreen *)swapCursor
 {
+    CGPoint point = [SGWLPoint mouseLocation];
+    NSScreen * screen = [SGWLScreen nextScreenWithPoint:point];
+    [self moveToScreen:screen];
+    return screen;
+}
+
+- (BOOL)swapCursorToScreenIfNeeded:(NSScreen *)screen
+{
+    CGPoint mousePoint = [SGWLPoint mouseLocation];
+    NSScreen * mouseScreen = [SGWLScreen screenWithPoint:mousePoint];
+    if (screen != mouseScreen)
+    {
+        return [self moveToScreen:screen];
+    }
+    return NO;
+}
+
+- (BOOL)moveToScreen:(NSScreen *)screen
+{
+    if (!screen)
+    {
+        return NO;
+    }
     uint32_t displayID = [[screen.deviceDescription objectForKey:@"NSScreenNumber"] intValue];
     CGPoint point = CGPointMake(CGRectGetWidth(screen.frame) / 2.0, CGRectGetHeight(screen.frame) / 2.0);
     CGDisplayMoveCursorToPoint(displayID, point);
+    return YES;
 }
 
 @end

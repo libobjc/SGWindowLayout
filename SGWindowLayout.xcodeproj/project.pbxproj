@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C27B1622101D86C00998E95 /* SGWLScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C27B1612101D86C00998E95 /* SGWLScreen.m */; };
+		9C27B1652101DAA900998E95 /* SGWLPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C27B1642101DAA900998E95 /* SGWLPoint.m */; };
 		9C336D7D1DE2D4D300193A8F /* SGWLLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C336D7C1DE2D4D300193A8F /* SGWLLogin.m */; };
 		9C64AFDB1DE295CC008E0AC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFDA1DE295CC008E0AC4 /* AppDelegate.m */; };
 		9C64AFDE1DE295CC008E0AC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C64AFDD1DE295CC008E0AC4 /* main.m */; };
@@ -21,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C27B1602101D86C00998E95 /* SGWLScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGWLScreen.h; sourceTree = "<group>"; };
+		9C27B1612101D86C00998E95 /* SGWLScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGWLScreen.m; sourceTree = "<group>"; };
+		9C27B1632101DAA900998E95 /* SGWLPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGWLPoint.h; sourceTree = "<group>"; };
+		9C27B1642101DAA900998E95 /* SGWLPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SGWLPoint.m; sourceTree = "<group>"; };
 		9C336D7B1DE2D4D300193A8F /* SGWLLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGWLLogin.h; sourceTree = "<group>"; };
 		9C336D7C1DE2D4D300193A8F /* SGWLLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGWLLogin.m; sourceTree = "<group>"; };
 		9C64AFD61DE295CC008E0AC4 /* SGWindowLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SGWindowLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +111,10 @@
 				9C336D7C1DE2D4D300193A8F /* SGWLLogin.m */,
 				9CB78BB22101BF0000DCE0AC /* SGWLCursor.h */,
 				9CB78BB32101BF0000DCE0AC /* SGWLCursor.m */,
+				9C27B1602101D86C00998E95 /* SGWLScreen.h */,
+				9C27B1612101D86C00998E95 /* SGWLScreen.m */,
+				9C27B1632101DAA900998E95 /* SGWLPoint.h */,
+				9C27B1642101DAA900998E95 /* SGWLPoint.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -205,10 +215,12 @@
 				9CBD4C411EAAEE6900FDD330 /* PTHotKey.m in Sources */,
 				9C64AFFC1DE29AE6008E0AC4 /* SGWLHotKey.m in Sources */,
 				9CBD4C421EAAEE6900FDD330 /* PTHotKeyCenter.m in Sources */,
+				9C27B1652101DAA900998E95 /* SGWLPoint.m in Sources */,
 				9CBD4C431EAAEE6900FDD330 /* PTKeyCombo.m in Sources */,
 				9CB78BB42101BF0000DCE0AC /* SGWLCursor.m in Sources */,
 				9C336D7D1DE2D4D300193A8F /* SGWLLogin.m in Sources */,
 				9C64AFDE1DE295CC008E0AC4 /* main.m in Sources */,
+				9C27B1622101D86C00998E95 /* SGWLScreen.m in Sources */,
 				9C64AFDB1DE295CC008E0AC4 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
