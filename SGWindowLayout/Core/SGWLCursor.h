@@ -10,7 +10,7 @@
 
 @interface SGWLCursor : NSObject
 
-+ (NSScreen *)swapCursor;
++ (NSScreen *)swapCursorIfNeeded;
 + (BOOL)swapCursorToScreenIfNeeded:(NSScreen *)screen;
 
 @end

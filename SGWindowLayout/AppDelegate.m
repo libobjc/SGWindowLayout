@@ -47,11 +47,11 @@
         [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeSmaller];
     }];
     [SGWLHotKey registerKeyCode:SGWLKeyCodeX modifiers:SGWLModifiersKeyControl handler:^{
-        NSScreen * screen = [SGWLLayout swapScreen];
+        NSScreen * screen = [SGWLLayout swapScreenIfNeeded];
         [SGWLCursor swapCursorToScreenIfNeeded:screen];
     }];
     [SGWLHotKey registerKeyCode:SGWLKeyCodeZ modifiers:SGWLModifiersKeyControl handler:^{
-        [SGWLCursor swapCursor];
+        [SGWLCursor swapCursorIfNeeded];
     }];
 }
 

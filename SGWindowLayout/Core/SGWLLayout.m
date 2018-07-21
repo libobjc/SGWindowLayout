@@ -22,9 +22,9 @@
     return obj;
 }
 
-+ (NSScreen *)swapScreen
++ (NSScreen *)swapScreenIfNeeded
 {
-    return [[SGWLLayout sharedInstance] swapScreen];
+    return [[SGWLLayout sharedInstance] swapScreenIfNeeded];
 }
 
 + (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
@@ -44,8 +44,12 @@
     return self;
 }
 
-- (NSScreen *)swapScreen
+- (NSScreen *)swapScreenIfNeeded
 {
+    if ([NSScreen screens].count <= 1)
+    {
+        return nil;
+    }
     CGPoint point = [SGWLPoint focusedWindowLocation];
     NSScreen * screen = [SGWLScreen nextScreenWithPoint:point];
     [self layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeFull screen:screen];

@@ -29,9 +29,9 @@
     return obj;
 }
 
-+ (NSScreen *)swapCursor
++ (NSScreen *)swapCursorIfNeeded
 {
-    return [[self sharedInstance] swapCursor];
+    return [[self sharedInstance] swapCursorIfNeeded];
 }
 
 + (BOOL)swapCursorToScreenIfNeeded:(NSScreen *)screen
@@ -39,8 +39,12 @@
     return [[self sharedInstance] swapCursorToScreenIfNeeded:screen];
 }
 
-- (NSScreen *)swapCursor
+- (NSScreen *)swapCursorIfNeeded
 {
+    if ([NSScreen screens].count <= 1)
+    {
+        return nil;
+    }
     CGPoint point = [SGWLPoint mouseLocation];
     NSScreen * screen = [SGWLScreen nextScreenWithPoint:point];
     [self moveToScreen:screen];
@@ -49,6 +53,10 @@
 
 - (BOOL)swapCursorToScreenIfNeeded:(NSScreen *)screen
 {
+    if (!screen)
+    {
+        return NO;
+    }
     CGPoint mousePoint = [SGWLPoint mouseLocation];
     NSScreen * mouseScreen = [SGWLScreen screenWithPoint:mousePoint];
     if (screen != mouseScreen)
