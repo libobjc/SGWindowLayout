@@ -191,6 +191,12 @@
             realFrame.size = NSMakeSize(currentFrame.size.width/2, currentFrame.size.height/2);
         }
             break;
+        case SGWLLayoutAttributeCenter:
+        {
+            realFrame.origin = NSMakePoint((screenFrame.size.width - currentFrame.size.width) / 2 + screenFrame.origin.x, (screenFrame.size.height - currentFrame.size.height) / 2 + screenFrame.origin.y);
+            realFrame.size = currentFrame.size;
+        }
+            break;
     }
     
     if (realFrame.origin.y > 0) {
