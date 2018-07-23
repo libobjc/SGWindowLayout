@@ -29,7 +29,9 @@
 
 + (void)layoutCurrentFocusedWindowWithLayoutAttribute:(SGWLLayoutAttribute)layoutAttribute
 {
-    [[SGWLLayout sharedInstance] layoutCurrentFocusedWindowWithLayoutAttribute:layoutAttribute screen:[NSScreen mainScreen]];
+    CGPoint point = [SGWLPoint mouseLocation];
+    NSScreen * screen = [SGWLScreen screenWithPoint:point];
+    [[SGWLLayout sharedInstance] layoutCurrentFocusedWindowWithLayoutAttribute:layoutAttribute screen:screen];
 }
 
 - (instancetype)init
@@ -52,7 +54,7 @@
     }
     CGPoint point = [SGWLPoint focusedWindowLocation];
     NSScreen * screen = [SGWLScreen nextScreenWithPoint:point];
-    [self layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeFull screen:screen];
+    [self layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeHalfCenter screen:screen];
     return screen;
 }
 
@@ -195,6 +197,12 @@
         {
             realFrame.origin = NSMakePoint((screenFrame.size.width - currentFrame.size.width) / 2 + screenFrame.origin.x, (screenFrame.size.height - currentFrame.size.height) / 2 + screenFrame.origin.y);
             realFrame.size = currentFrame.size;
+        }
+            break;
+        case SGWLLayoutAttributeHalfCenter:
+        {
+            realFrame.origin = NSMakePoint(screenFrame.size.width / 4 + screenFrame.origin.x, screenFrame.size.height / 4 + screenFrame.origin.y);
+            realFrame.size = NSMakeSize(screenFrame.size.width / 2, screenFrame.size.height / 2);
         }
             break;
     }

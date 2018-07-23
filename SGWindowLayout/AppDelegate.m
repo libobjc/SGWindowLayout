@@ -44,7 +44,7 @@
         [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeRight];
     }];
     [SGWLHotKey registerKeyCode:SGWLKeyCodeS modifiers:SGWLModifiersKeyControl handler:^{
-        [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeSmaller];
+        [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeHalfCenter];
     }];
     [SGWLHotKey registerKeyCode:SGWLKeyCodeD modifiers:SGWLModifiersKeyControl handler:^{
         [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeCenter];
