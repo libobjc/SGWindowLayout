@@ -44,10 +44,7 @@
         [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeRight];
     }];
     [SGWLHotKey registerKeyCode:SGWLKeyCodeS modifiers:SGWLModifiersKeyControl handler:^{
-        [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeHalfCenter];
-    }];
-    [SGWLHotKey registerKeyCode:SGWLKeyCodeD modifiers:SGWLModifiersKeyControl handler:^{
-        [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeCenter];
+        [SGWLLayout layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeTwoThirdsCenter];
     }];
     [SGWLHotKey registerKeyCode:SGWLKeyCodeX modifiers:SGWLModifiersKeyControl handler:^{
         NSScreen * screen = [SGWLLayout swapScreenIfNeeded];

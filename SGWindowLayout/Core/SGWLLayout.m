@@ -201,8 +201,16 @@
             break;
         case SGWLLayoutAttributeHalfCenter:
         {
-            realFrame.origin = NSMakePoint(screenFrame.size.width / 4 + screenFrame.origin.x, screenFrame.size.height / 4 + screenFrame.origin.y);
+            NSSize size = NSMakeSize(screenFrame.size.width * 1 / 2, screenFrame.size.height * 1 / 2);
+            realFrame.origin = NSMakePoint((screenFrame.size.width - size.width) / 2 + screenFrame.origin.x, (screenFrame.size.height - size.height) / 2 + screenFrame.origin.y);
             realFrame.size = NSMakeSize(screenFrame.size.width / 2, screenFrame.size.height / 2);
+        }
+            break;
+        case SGWLLayoutAttributeTwoThirdsCenter:
+        {
+            NSSize size = NSMakeSize(screenFrame.size.width * 2 / 3, screenFrame.size.height * 2 / 3);
+            realFrame.origin = NSMakePoint((screenFrame.size.width - size.width) / 2 + screenFrame.origin.x, (screenFrame.size.height - size.height) / 2 + screenFrame.origin.y);
+            realFrame.size = size;
         }
             break;
     }
