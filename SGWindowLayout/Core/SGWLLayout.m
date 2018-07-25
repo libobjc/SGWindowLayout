@@ -54,7 +54,7 @@
     }
     CGPoint point = [SGWLPoint focusedWindowLocation];
     NSScreen * screen = [SGWLScreen nextScreenWithPoint:point];
-    [self layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeHalfCenter screen:screen];
+    [self layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeTwoThirdsCenter screen:screen];
     return screen;
 }
 
