@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, SGWLLayoutAttribute)
     SGWLLayoutAttributeSmaller,
     SGWLLayoutAttributeCenter,
     SGWLLayoutAttributeHalfCenter,
-    SGWLLayoutAttributeTwoThirdsCenter,
+    SGWLLayoutAttributeTwoThirdsFourThirdsCenter,
 };
 
 @interface SGWLLayout : NSObject

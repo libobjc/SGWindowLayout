@@ -54,7 +54,7 @@
     }
     CGPoint point = [SGWLPoint focusedWindowLocation];
     NSScreen * screen = [SGWLScreen nextScreenWithPoint:point];
-    [self layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeTwoThirdsCenter screen:screen];
+    [self layoutCurrentFocusedWindowWithLayoutAttribute:SGWLLayoutAttributeFull screen:screen];
     return screen;
 }
 
@@ -206,9 +206,9 @@
             realFrame.size = NSMakeSize(screenFrame.size.width / 2, screenFrame.size.height / 2);
         }
             break;
-        case SGWLLayoutAttributeTwoThirdsCenter:
+        case SGWLLayoutAttributeTwoThirdsFourThirdsCenter:
         {
-            NSSize size = NSMakeSize(screenFrame.size.width * 2 / 3, screenFrame.size.height * 2 / 3);
+            NSSize size = NSMakeSize(screenFrame.size.width * 2 / 3, screenFrame.size.height * 3 / 4);
             realFrame.origin = NSMakePoint((screenFrame.size.width - size.width) / 2 + screenFrame.origin.x, (screenFrame.size.height - size.height) / 2 + screenFrame.origin.y);
             realFrame.size = size;
         }
